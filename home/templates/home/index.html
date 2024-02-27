@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>Document</title>
+  </head>
+  <body style="font-family: Arial, sans-serif; margin: 20px">
+    <p>
+      <strong>1- First:</strong> Upload the key JSON file on your server and set the address of
+      this file in 'JSON_FILE_PATH in settings.py'.
+    </p>
+
+    <form
+      method="post"
+      enctype="multipart/form-data"
+      style="margin-bottom: 20px"
+    >
+      {% csrf_token %}
+      <input type="file" name="file" style="margin-right: 10px" />
+      <button
+        type="submit"
+        name="upload_file"
+        style="
+          padding: 5px 10px;
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          cursor: pointer;
+        "
+      >
+        Upload
+      </button>
+      {{msg}}
+    </form>
+
+    <p>
+      <strong>2- Second:</strong> Enter a simple username and FCM token from the
+      admin panel so that you can see them here.
+    </p>
+    <br />
+    <p>
+      <strong>3- Third:</strong> Select which user to send notification to and
+      click the button.
+    </p>
+    <br />
+    <form method="post" style="margin-bottom: 20px">
+      {% csrf_token %}
+      <table style="width: 100%; border-collapse: collapse">
+        <thead>
+          <tr style="background-color: #f8f9fa">
+            <th style="padding: 8px; border: 1px solid #ddd">Name</th>
+            <th style="padding: 8px; border: 1px solid #ddd">FCM Token</th>
+            <th style="padding: 8px; border: 1px solid #ddd">Select</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              {{ user.name }}
+            </td>
+            <td
+              style="
+                padding: 8px;
+                border: 1px solid #ddd;
+                max-width: 200px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+              "
+            >
+              {{ user.fcm_token }}
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              <input
+                type="checkbox"
+                class="fcmToken"
+                value="{{ user.fcm_token }}"
+              />
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br />
+      <button
+        type="submit"
+        id="send_message"
+        style="
+          padding: 8px 20px;
+          background-color: #28a745;
+          color: #fff;
+          border: none;
+          cursor: pointer;
+        "
+      >
+        Send Messages
+      </button>
+    </form>
+<div id="container"> </div>
+   
+
+    <script>
+
+      $(document).ready(function() {
+          $('#send_message').click(function(event) {
+            event.preventDefault();
+              var checkedValues = [];
+
+              var checkedValues = [];
+              $('.fcmToken:checked').each(function() {
+                  checkedValues.push($(this).val());
+                  //console.log(checkedValues);
+              });
+
+             if($('.fcmToken:checked').length==0){
+              alert('Select some Users!!!');
+              return;
+            }
+
+
+              $.ajax(
+                {
+                  type: 'POST',
+
+                  url: '/',
+                  data: {
+                      'checkedValues': checkedValues,
+                      'csrfmiddlewaretoken': '{{ csrf_token }}'
+                  },
+
+                  success: function(response) {
+                    console.log(response['status'].length)
+                    for ( let i=0;i<response['status'].length;i++)
+                    {
+                      if(response["status"][i].slice(0, 6)=='Failed'){
+
+                        $('#container').append('<p style="color: red; font-weight: bold;">' + response["status"][i].slice(0, 55) + '</p>');
+                      }
+                      else{
+                        
+                        $('#container').append('<p style="color: green; font-weight: bold;">' + response["status"][i].slice(0, 55) + '</p>');
+                      }
+
+                      //$('#Result').html('<p style="color: red; font-weight: bold;">' + response["status"] + '</p>');
+                    }
+                    $('#Alert').text(this.data);
+                  },
+                  error: function(xhr, errmsg, err) {
+                    console.log('error')
+                  }
+              });
+          });
+      });
+    </script>
+  </body>
+</html>
