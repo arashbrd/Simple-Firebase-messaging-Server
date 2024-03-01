@@ -4,22 +4,11 @@ import os
 from django.shortcuts import render, redirect 
 from django.conf import settings
 from .models import SimpleUsers
-import requests
 import datetime
-from google.oauth2 import service_account
-import google.auth.transport.requests
-from django.conf import settings
 from django.http import JsonResponse
-import json
+from utils.utils import generate_access_token,send_fcm_message,extract_project_id
 
 json_file = settings.JSON_FILE_PATH # the address of key file downloade from Google Firebase
-
-def extract_project_id(key_file_path):
-    '''this function get the address of key file and return the projct_id'''
-    with open(key_file_path) as f:
-        key_data = json.load(f)
-        project_id = key_data.get('project_id')
-        return project_id
 
 
 def index_page(request):
@@ -62,15 +51,20 @@ def index_page(request):
                 print("Selected fcmToken:", checked_values)
                 context['fcmTokens']=checked_values
                 # print(f"***********************json file is:{json_file}")
-                access_token = generate_access_token(json_file)
-                # print(f"************Access Token:{access_token}")
                 Message={
                     'status':[]
                 }
                 
+                access_token = generate_access_token(json_file)
+                if access_token is None:
+                    Message['status'].append(f"Failed connecting to server to get Access Token")
+                    return JsonResponse(Message)
+
+                # print(f"************Access Token:{access_token}")
+                
+                project_id=extract_project_id(json_file)
                 for token in checked_values:
                     # print(f"*******************{token}")
-                    project_id=extract_project_id(json_file)
                     print("Sending data....")
                     res=send_fcm_message(bearer_token=access_token,notification_body='salam',notification_title='hi',project_id=project_id,token=token)
                     if res:
@@ -81,44 +75,4 @@ def index_page(request):
 
                 return JsonResponse(Message)
     return render(request, 'home/index.html',context)
-        
-def generate_access_token(file_path):
-    '''this function for generate accesss token '''
-    credentials = service_account.Credentials.from_service_account_file(
-        file_path,
-        
-        scopes=["https://www.googleapis.com/auth/firebase.messaging"],
-    )
-
-    request = google.auth.transport.requests.Request()
-    credentials.refresh(request)
-
-    return credentials.token
-
-def send_fcm_message(token, notification_body, notification_title, project_id,bearer_token):
-    '''function that send notification'''
-    
-    
-    url = f"https://fcm.googleapis.com/v1/projects/{project_id}/messages:send"
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {bearer_token}"
-    }
-    payload = {
-        "message": {
-            "token": token,# token comes from user input in admin panel
-            "notification": {
-                "body": notification_body,
-                "title": notification_title
-            }
-        }
-    }
-    response = requests.post(url, json=payload, headers=headers)
-    if response.status_code == 200:
-        print("FCM message sent successfully.")
-        return True
-    else:
-        print(f"Failed to send FCM message. Status code: {response.status_code}")
-        print(response.text)
-        return False
-
+ 

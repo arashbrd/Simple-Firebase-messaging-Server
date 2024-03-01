@@ -18,7 +18,19 @@ after that you need FCM token for users to send notification.
 
 ## Installation
 
-for installing download the project and run the commands:
+for installing download the project: install django and django-rest framework and google-auth packages
+then go to the project directory and run 'python manage.py runserver'
+this Project have API in address: api/sendmsg/
+to use API you need:
+1-FCM Token:Get by device yo want to send message to
+2-Access Token: To generate Access Token you sould have json key file downloaded from firebase.google.com after add your project
+
+Note:
+This Api works as 'TokenAuthentication' so that you should get your token from :
+api/auth-token/
+and add your Token in header of POST request as 
+'Authorization: Token {your_token}'
+
 
 ## Usage
 

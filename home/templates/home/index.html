@@ -133,6 +133,7 @@
                   },
 
                   success: function(response) {
+                    $('#container').html("");
                     console.log(response['status'].length)
                     for ( let i=0;i<response['status'].length;i++)
                     {
