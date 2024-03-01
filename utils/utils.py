@@ -1,5 +1,6 @@
        
 import google.auth.transport.requests
+from google.auth.exceptions import TransportError 
 from google.oauth2 import service_account
 import requests
 import json
@@ -30,6 +31,9 @@ def generate_access_token(file_path):
 
         return credentials.token
     except Timeout:
+    
+        return None
+    except TransportError:
         return None
 
 def send_fcm_message(token, notification_body, notification_title, project_id,bearer_token):
