@@ -1,6 +1,5 @@
 # Simple Firebase Messaging Server
 
-
 ## Description
 
 implement messaging server using Google Firebase API
@@ -28,9 +27,8 @@ to use API you need:
 Note:
 This Api works as 'TokenAuthentication' so that you should get your token from :
 api/auth-token/
-and add your Token in header of POST request as 
+and add your Token in header of POST request as
 'Authorization: Token {your_token}'
-
 
 ## Usage
 
@@ -44,11 +42,12 @@ Guidelines for contributing to the project.
 
 This project is licensed under the terms of the [MIT License](LICENSE).
 
-
 ## Pics
-guide for getting key file from google firebase:
+
+my web panel:
 
 ![Project Image](https://github.com/arashbrd/Simple-Firebase-messaging-Server-with-django/blob/main/pics/web.png)
 
-my web panel:
+guide for getting key file from google firebase:
+
 ![Project Image](https://github.com/arashbrd/Simple-Firebase-messaging-Server-with-django/blob/main/pics/get%20Private%20Key.png)
