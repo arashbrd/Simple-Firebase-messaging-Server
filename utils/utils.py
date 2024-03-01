@@ -5,6 +5,8 @@ from google.oauth2 import service_account
 import requests
 import json
 from requests.exceptions import Timeout
+from firebase_admin import messaging
+
 
 
 
@@ -63,3 +65,17 @@ def send_fcm_message(token, notification_body, notification_title, project_id,be
         print(response.text)
         return False
 
+
+def send_fcm_several_messages(registration_tokens,data):
+        # Create a list containing up to 500 registration tokens.
+    # These registration tokens come from the client FCM SDKs.
+    registration_tokens = registration_tokens
+
+    message = messaging.MulticastMessage(
+        data=data,#{'score': '850', 'time': '2:45'},
+        tokens=registration_tokens,
+    )
+    response = messaging.send_multicast(message)
+    # See the BatchResponse reference documentation
+    # for the contents of response.
+    print('{0} messages were sent successfully'.format(response.success_count))
