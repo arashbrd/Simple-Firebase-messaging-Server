@@ -43,3 +43,12 @@ Guidelines for contributing to the project.
 ## License
 
 This project is licensed under the terms of the [MIT License](LICENSE).
+
+
+## Pics
+guide for getting key file from google firebase:
+
+![Project Image](https://github.com/arashbrd/Simple-Firebase-messaging-Server-with-django/blob/main/pics/web.png)
+
+my web panel:
+![Project Image](https://github.com/arashbrd/Simple-Firebase-messaging-Server-with-django/blob/main/pics/get%20Private%20Key.png)
