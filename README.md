@@ -17,20 +17,20 @@ after that you need FCM token for users to send notification.
 
 ## Installation
 
-for installing download the project: pip install -r requirements.txt.
-Then go to the project directory and run 'python manage.py runserver'
-this Project has API in address: api/sendmsg/
-to use API you need:
+- for installing download the project: `pip install -r requirements.txt`.
+  Then go to the project directory and run 'python manage.py runserver'
+  this Project has API in address: api/sendmsg/
+  to use API you need:
 
-1-FCM Token:Get by device yo want to send message to
-2-Access Token: To generate Access Token you sould have json key file downloaded from firebase.google.com
-after add your project
+- 1-FCM Token:Get by device yo want to send message to
+- 2-Access Token: To generate Access Token you sould have json key file downloaded from firebase.google.com
+  after add your project
 
-Note:
-This Api works as 'TokenAuthentication' so that you should get your token from :
-api/auth-token/
-and add your Token in header of POST request as
-'Authorization: Token {your_token}'
+- Note:
+  This Api works as 'TokenAuthentication' so that you should get your token from :
+  api/auth-token/
+  and add your Token in header of POST request as
+  'Authorization: Token {your_token}'
 
 ## Usage
 
@@ -47,10 +47,10 @@ This project is licensed under the terms of the [MIT License](LICENSE).
 
 ## Pics
 
-my web panel:
+- my web panel:
 
 ![Project Image](https://github.com/arashbrd/Simple-Firebase-messaging-Server-with-django/blob/main/pics/web.png)
 
-guide for getting key file from google firebase:
+- guide for getting key file from google firebase:
 
 ![Project Image](https://github.com/arashbrd/Simple-Firebase-messaging-Server-with-django/blob/main/pics/get%20Private%20Key.png)
