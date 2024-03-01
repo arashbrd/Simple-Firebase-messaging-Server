@@ -17,7 +17,7 @@ after that you need FCM token for users to send notification.
 
 ## Installation
 
-for installing download the project: install django and django-rest framework and google-auth packages
+for installing download the project: pip install -r requirements.txt
 then go to the project directory and run 'python manage.py runserver'
 this Project have API in address: api/sendmsg/
 to use API you need:
