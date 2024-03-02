@@ -14,7 +14,7 @@ after that you need FCM token for users to send notification.
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
-
+- [Pics](#pics)
 ## Installation
 
 - For installing download the project: `pip install -r requirements.txt`.
@@ -34,12 +34,9 @@ after that you need FCM token for users to send notification.
 
 ## Usage
 
-for learning purposes
-for more info refer to : https://firebase.google.com/docs/cloud-messaging/send-message#python
+- For learning purposes and who want to send message notification manually using Google Firebase
+- For more info please refer to : https://firebase.google.com/docs/cloud-messaging/send-message#python
 
-## Contributing
-
-Guidelines for contributing to the project.
 
 ## License
 
