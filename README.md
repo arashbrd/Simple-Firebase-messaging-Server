@@ -20,11 +20,11 @@ after that you need FCM token for users to send notification.
 - For installing download the project: `pip install -r requirements.txt`.
 - Then go to the project directory and run `python manage.py runserver`
 - This Project has API in address: /api/sendmsg/
-  to use API you need:
+- To use API, you need:
 
-- 1-FCM Token:Get by device yo want to send message to
-- 2-Access Token: To generate Access Token you sould have json key file downloaded from firebase.google.com
-  after add your project
+  - 1-FCM Token:Get by device yo want to send message to
+  - 2-Access Token: To generate Access Token you sould have json key file downloaded from firebase.google.com
+    after add your project
 
 - Note:
   This Api works as 'TokenAuthentication' so that you should get your token from :
