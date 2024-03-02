@@ -17,9 +17,9 @@ after that you need FCM token for users to send notification.
 
 ## Installation
 
-- for installing download the project: `pip install -r requirements.txt`.
-  Then go to the project directory and run `python manage.py runserver`
-  this Project has API in address: api/sendmsg/
+- For installing download the project: `pip install -r requirements.txt`.
+- Then go to the project directory and run `python manage.py runserver`
+- This Project has API in address: /api/sendmsg/
   to use API you need:
 
 - 1-FCM Token:Get by device yo want to send message to
