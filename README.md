@@ -22,7 +22,7 @@ after that you need FCM token for users to send notification.
 - This Project has API in address: /api/sendmsg/
 - To use API, you need:
 
-  - 1-FCM Token:Get by device yo want to send message to
+  - 1-FCM Token:Get by device you want to send message to
   - 2-Access Token: To generate Access Token you sould have json key file downloaded from firebase.google.com
     after add your project
 
