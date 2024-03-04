@@ -1,4 +1,4 @@
-# Simple Firebase Messaging WebServer(Push Notifcation)
+# Simple Firebase Messaging WebServer(Push Notification)
 
 ## Description
 
