@@ -9,12 +9,14 @@ console.firebase.google.com
 and then get key file as json for upload to your server
 after that you need FCM token for users to send notification.
 
+- implementation of mobile side to receive message is not covered in this project
+
 ## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [License](#license)
 - [Pics](#pics)
+
 ## Installation
 
 - For installing download the project: `pip install -r requirements.txt`.
@@ -36,11 +38,6 @@ after that you need FCM token for users to send notification.
 
 - For learning purposes and who want to send message notification manually using Google Firebase
 - For more info please refer to : https://firebase.google.com/docs/cloud-messaging/send-message#python
-
-
-## License
-
-This project is licensed under the terms of the [MIT License](LICENSE).
 
 ## Pics
 
